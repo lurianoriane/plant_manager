@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">PlantManager</string>
+    <string name="welcome_text">Gerencie suas plantas de forma fácil</string>
+    <string name="title_activity_my_plants">MyPlants</string>
+    <string name="my_plants">Minhas Plantinhas</string>
+    <string name="new_plant">Nova planta</string>
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="choose_time">Esolha o melhor horário para ser lembrado:</string>
+    <string name="calendar_icon_description">ícone de calendário</string>
+    <string name="save_button">Salvar</string>
+    <string name="plant_name">Nome da planta</string>
+    <string name="confirm_button">Confirmar</string>
+    <string name="dismiss_button">Sair</string>
+    <string name="dont_forget_text">Não se esqueça mais de regar suas plantas. Nós lembraremos você sempre que precisar. </string>
+    <string name="next_plants_text">Próximas plantas a serem regadas</string>
+    <string name="next_button_description">botão com imagem de seta indicando navegação para próxima tela</string>
+    <string name="choose_plant_name_text">Digite o nome da sua planta</string>
+    <string name="choose_plant_place">Digite o cômodo</string>
+
 </resources>

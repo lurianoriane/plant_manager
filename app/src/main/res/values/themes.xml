@@ -2,4 +2,9 @@
 <resources>
 
     <style name="Theme.PlantManager" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Base application theme. -->
+    <style name="Base.Theme.PlantManager" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/green_color</item>
+        <item name="colorSecondary">@color/green_color</item>
+    </style>
 </resources>
