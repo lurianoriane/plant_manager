@@ -27,13 +27,19 @@ Features que ainda faltam implementar:
 - Correção de navegação entre fragments
 
 
-- Splash Screen
+- Splash Screen                
   ![image](https://github.com/lurianoriane/plant_manager/assets/72623527/885a34a9-8e01-4ea8-a842-49240264517b)
 
-- Plant Screen
+
+
+- Plant Screen                   
  ![image](https://github.com/lurianoriane/plant_manager/assets/72623527/12f5121d-7f37-44f4-aa7c-b893ff5946ba)
+
+
   
-- Welcome Screen
+- Welcome Screen                      
 ![image](https://github.com/lurianoriane/plant_manager/assets/72623527/7175d427-a4ca-4c72-a444-d118e032ef4d)
+
+
 
 - MyPlants Screen *tela sem visualização devido a erro no código
