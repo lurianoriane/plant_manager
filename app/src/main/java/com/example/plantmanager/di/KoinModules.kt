@@ -4,7 +4,7 @@ import androidx.room.Room
 import com.example.plantmanager.database.PlantManagerDatabase
 import com.example.plantmanager.repository.PlantsRepository
 import com.example.plantmanager.ui.viewmodels.MyPlantsViewModel
-import com.example.plantmanager.ui.viewmodels.NewPlantViewModel
+import com.example.plantmanager.ui.viewmodels.PlantViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.dsl.singleOf
@@ -12,12 +12,14 @@ import org.koin.dsl.module
 
 
 val appModule = module {
-    viewModel { MyPlantsViewModel(get()) }
-    viewModel { NewPlantViewModel(get()) }
+    viewModel { MyPlantsViewModel(repository = get()) }
+    viewModel { PlantViewModel(repository = get()) }
 }
 
 val storageModule = module {
-    singleOf(::PlantsRepository)
+    single{
+        PlantsRepository(dao = get())
+    }
     single {
         Room.databaseBuilder(
             androidContext(),

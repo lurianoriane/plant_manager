@@ -19,5 +19,7 @@
     <string name="next_button_description">botão com imagem de seta indicando navegação para próxima tela</string>
     <string name="choose_plant_name_text">Digite o nome da sua planta</string>
     <string name="choose_plant_place">Digite o cômodo</string>
+    <string name="my_text">Minhas</string>
+    <string name="plants_text">Plantinhas</string>
 
 </resources>

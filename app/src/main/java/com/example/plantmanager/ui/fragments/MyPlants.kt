@@ -12,6 +12,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
@@ -26,10 +28,14 @@ import androidx.compose.ui.unit.sp
 import com.example.plantmanager.R
 import com.example.plantmanager.model.PlantModel
 import com.example.plantmanager.ui.components.PlantCard
+import com.example.plantmanager.ui.viewmodels.MyPlantsUiState
+import com.example.plantmanager.ui.viewmodels.MyPlantsViewModel
+import org.koin.androidx.compose.getViewModel
 
-//ui state alterado para visualização do preview
 @Composable
-fun MyPlantsScreen(uiState: List<PlantModel>, onPlantClicked: () -> Unit) {
+fun MyPlantsScreen(onPlantClicked: () -> Unit) {
+    val viewModel = getViewModel<MyPlantsViewModel>()
+    val uiState by viewModel.uiState.collectAsState(MyPlantsUiState())
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -39,7 +45,6 @@ fun MyPlantsScreen(uiState: List<PlantModel>, onPlantClicked: () -> Unit) {
         Row(
             horizontalArrangement = Arrangement.Start,
             modifier = Modifier
-
         ) {
             Text(
                 text = stringResource(R.string.next_plants_text),
@@ -55,10 +60,10 @@ fun MyPlantsScreen(uiState: List<PlantModel>, onPlantClicked: () -> Unit) {
             contentPadding = PaddingValues(bottom = 16.dp)
         ) {
             items(
-                items = uiState,
+                items = uiState.plants,
                 itemContent = {
                     PlantCard(
-                        plant = uiState[it.id],
+                        plant = it,
                         onPlantClicked = { onPlantClicked() }
                     )
                 }
@@ -77,7 +82,7 @@ fun HeaderComponent() {
     ) {
         Column {
             Text(
-                text = "Minhas",
+                text = stringResource(R.string.my_text),
                 fontSize = 32.sp,
                 textAlign = TextAlign.Start,
                 fontWeight = FontWeight.Normal,
@@ -85,7 +90,7 @@ fun HeaderComponent() {
                 fontFamily = FontFamily.Default,
             )
             Text(
-                text = "Plantinhas",
+                text = stringResource(R.string.plants_text),
                 fontSize = 32.sp,
                 textAlign = TextAlign.Start,
                 fontWeight = FontWeight.Bold,
@@ -105,7 +110,7 @@ fun HeaderComponent() {
 @Preview(showSystemUi = true)
 @Composable
 fun MyPlantsScreenPreview() {
-    MyPlantsScreen(uiState = createList(), onPlantClicked = {})
+    MyPlantsScreen(onPlantClicked = {})
 }
 
 

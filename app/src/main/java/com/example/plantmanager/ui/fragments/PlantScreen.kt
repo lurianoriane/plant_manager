@@ -11,6 +11,9 @@ import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
@@ -26,13 +29,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.plantmanager.R
 import com.example.plantmanager.ui.viewmodels.PlantUiState
+import com.example.plantmanager.ui.viewmodels.PlantViewModel
+import kotlinx.coroutines.launch
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun PlantScreen(
     onTimePickerClicked: () -> Unit,
     onConfirmClicked: () -> Unit,
-    uiState: PlantUiState
 ) {
+    val scope = rememberCoroutineScope()
+    val viewModel = getViewModel<PlantViewModel>()
+    val uiState by viewModel.uiState.collectAsState(PlantUiState())
     Column(
         modifier = Modifier
             .background(colorResource(id = R.color.background_color))
@@ -50,7 +58,7 @@ fun PlantScreen(
         )
         TextField(
             value = uiState.name,
-            onValueChange = { uiState.name = it },
+            onValueChange = { viewModel.updateName(it) },
             textStyle = LocalTextStyle.current.copy(
                 textAlign = TextAlign.Center
             ),
@@ -66,7 +74,7 @@ fun PlantScreen(
         )
         TextField(
             value = uiState.place,
-            onValueChange = { uiState.place = it },
+            onValueChange = { viewModel.updatePlace(it) },
             textStyle = LocalTextStyle.current.copy(
                 textAlign = TextAlign.Center
             ),
@@ -82,7 +90,10 @@ fun PlantScreen(
         )
         Button(
             onClick = {
-                onConfirmClicked()
+                scope.launch {
+                    viewModel.save()
+                    onConfirmClicked()
+                }
             },
         ) {
             Text(
@@ -100,7 +111,7 @@ fun PlantScreen(
 @Preview(showSystemUi = true)
 @Composable
 fun PlantScreenPreview() {
-    PlantScreen(onTimePickerClicked = {}, onConfirmClicked = {}, uiState = PlantUiState())
+    PlantScreen(onTimePickerClicked = {}, onConfirmClicked = {})
 }
 
 

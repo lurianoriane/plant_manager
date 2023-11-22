@@ -17,19 +17,19 @@ data class PlantUiState(
     val onHourChanged: (PlantModel) -> Unit = {},
     var onPlaceChanged: (PlantModel) -> Unit = {},
     var onNameChanged: (PlantModel) -> Unit = {}
-
 )
 
-class NewPlantViewModel(private val repository: PlantsRepository) : ViewModel() {
+class PlantViewModel(private val repository: PlantsRepository) : ViewModel() {
     private val _uiState: MutableStateFlow<PlantUiState> = MutableStateFlow(PlantUiState())
     val uiState = _uiState.asStateFlow()
+
 
     init {
         _uiState.update { currentState ->
             currentState.copy(
-                onHourChanged = { waterHour ->
+                onHourChanged = {
                     _uiState.update {
-                        it.copy(waterHour = waterHour.waterHour)
+                        it.copy(waterHour = it.waterHour)
                     }
                 },
                 onNameChanged = {
@@ -49,6 +49,18 @@ class NewPlantViewModel(private val repository: PlantsRepository) : ViewModel() 
     suspend fun save() {
         with(_uiState.value) {
             repository.save(PlantModel(id = id, name = name, place = place, waterHour = waterHour, water = water))
+        }
+    }
+
+    fun updateName(newName: String) {
+        _uiState.update {
+            it.copy(name = newName)
+        }
+    }
+
+    fun updatePlace(newPlace: String) {
+        _uiState.update {
+            it.copy(place = newPlace)
         }
     }
 }

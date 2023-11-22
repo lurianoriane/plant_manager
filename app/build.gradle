@@ -67,6 +67,8 @@ dependencies {
 
     //koin
     implementation "io.insert-koin:koin-android:3.5.0"
+    implementation 'io.insert-koin:koin-android:3.5.0'
+    implementation 'io.insert-koin:koin-androidx-compose:3.5.0'
 
     // material 3
     implementation 'androidx.compose.material3:material3:1.2.0-alpha11'
