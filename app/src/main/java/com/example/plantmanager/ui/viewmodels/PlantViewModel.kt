@@ -10,13 +10,13 @@ import kotlinx.coroutines.flow.update
 
 data class PlantUiState(
     val id: Int = 0,
-    var name: String = "",
-    var place: String = "",
-    var waterHour: Long = 0,
+    val name: String = "",
+    val place: String = "",
+    val waterHour: Long = 0,
     val water: Boolean = false,
     val onHourChanged: (PlantModel) -> Unit = {},
-    var onPlaceChanged: (PlantModel) -> Unit = {},
-    var onNameChanged: (PlantModel) -> Unit = {}
+    val onPlaceChanged: (PlantModel) -> Unit = {},
+    val onNameChanged: (PlantModel) -> Unit = {}
 )
 
 class PlantViewModel(private val repository: PlantsRepository) : ViewModel() {
